@@ -7,15 +7,23 @@
 
 import SwiftUI
 
+struct TransactionItem: Identifiable {
+    let id = UUID()
+    let type: String
+    let description: String
+    let amount: Double
+}
+
 struct ContentView: View {
+    @State var transactions = [TransactionItem]()
+    @State var selectedType = ""
+    @State var newDescription = ""
+    @State var newAmount = ""
+    @State var totalBalance = 0.0
+    
+    let transactionTypes = ["Expense", "Income"]
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        
     }
 }
 
