@@ -23,6 +23,18 @@ struct ContentView: View {
     
     let transactionTypes = ["Expense", "Income"]
     var body: some View {
+        VStack{
+            ZStack {
+                Circle()
+                    .foregroundColor(.blue)
+                    .frame(width: 150, height: 150)
+                Text("$\(totalBalance, specifier: "%.2f")")
+                    .font(.system(size: 30, weight: .bold))
+                    .foregroundColor(.white)
+            }
+            .padding()
+            
+        }
         
     }
 }
