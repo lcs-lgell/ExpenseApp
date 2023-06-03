@@ -45,13 +45,41 @@ struct ContentView: View {
                 }
 // this is where the swipe to delete function will go
             }
+            
 
             
-        }
+        }// end of the VStack
         
+    }// end of the body struct
+    
+    func addTransaction() {
+        guard let amount = Double(newAmount), !selectedType.isEmpty else { return }
+
+        let transaction = TransactionItem(type: selectedType, description: newDescription, amount: amount)
+        transactions.append(transaction)
+
+        newDescription = ""
+        newAmount = ""
+        selectedType = ""
+
+        updateTotalBalance()
+    }
+    
+    func deleteTransaction(at offsets: IndexSet) {
+        transactions.remove(atOffsets: offsets)
+        updateTotalBalance()
+    }
+
+    func updateTotalBalance() {
+        totalBalance = transactions.reduce(0) { result, transaction in
+            if transaction.type == "Expense" {
+                return result - transaction.amount
+            } else {
+                return result + transaction.amount
+            }
+        }
     }
 }
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
