@@ -34,6 +34,19 @@ struct ContentView: View {
             }
             .padding()
             
+            List {
+                ForEach(transactions) { transaction in
+                    VStack(alignment: .leading) {
+                        Text(transaction.description)
+                            .font(.headline)
+                            .foregroundColor(transaction.type == "Expense" ? .red : .green)
+                        Text("$\(transaction.amount, specifier: "%.2f")")
+                    }
+                }
+// this is where the swipe to delete function will go
+            }
+
+            
         }
         
     }
