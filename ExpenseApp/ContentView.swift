@@ -45,13 +45,36 @@ struct ContentView: View {
                 }
 // this is where the swipe to delete function will go
             }
-            
+            HStack {
+                Picker("Type", selection: $selectedType) {
+                    ForEach(transactionTypes, id: \.self) { type in
+                        Text(type)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
 
-            
+                TextField("Description", text: $newDescription)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                TextField("Amount", text: $newAmount)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.decimalPad)
+                
+                Button(action: addTransaction) {
+                    Text("+")
+                }
+                .font(.title)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+            }
+            .padding()
+        }
+        .onAppear {
+            updateTotalBalance()
+            }
         }// end of the VStack
-        
-    }// end of the body struct
-    
     func addTransaction() {
         guard let amount = Double(newAmount), !selectedType.isEmpty else { return }
 
@@ -79,7 +102,10 @@ struct ContentView: View {
             }
         }
     }
-}
+}// end of the body struct
+    
+
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
