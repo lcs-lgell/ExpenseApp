@@ -109,5 +109,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+        // make the database viewable in every view
+            .environment(\.blackbirdDatabase, AppDatabase.instance)
     }
 }
