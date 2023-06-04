@@ -12,6 +12,8 @@ struct ExpenseAppApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            // make the database viewable in every view
+                .environment(\.blackbirdDatabase, AppDatabase.instance)
         }
     }
 }
