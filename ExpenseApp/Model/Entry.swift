@@ -11,7 +11,7 @@ import SwiftUI
 struct Entry: BlackbirdModel {
     
     @BlackbirdColumn var id: Int
-    @BlackbirdColumn var type_id: Int
+    @BlackbirdColumn var name: String
     @BlackbirdColumn var description: String
     @BlackbirdColumn var value: Double
     

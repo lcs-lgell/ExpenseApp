@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE36BCD42A324E560033E7D0 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EE36BCD32A324E560033E7D0 /* db.sqlite */; };
 		EE7E32482A29270F0061284D /* ExpenseAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7E32472A29270F0061284D /* ExpenseAppApp.swift */; };
 		EE7E324A2A29270F0061284D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7E32492A29270F0061284D /* ContentView.swift */; };
 		EE7E324C2A29271D0061284D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE7E324B2A29271D0061284D /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE36BCD32A324E560033E7D0 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		EE7E32442A29270F0061284D /* ExpenseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE7E32472A29270F0061284D /* ExpenseAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseAppApp.swift; sourceTree = "<group>"; };
 		EE7E32492A29270F0061284D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		EE7E32572A2927DE0061284D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EE36BCD32A324E560033E7D0 /* db.sqlite */,
 				EEA135EB2A2D029D00A917E5 /* Entry.swift */,
 			);
 			path = Model;
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE7E324F2A29271D0061284D /* Preview Assets.xcassets in Resources */,
+				EE36BCD42A324E560033E7D0 /* db.sqlite in Resources */,
 				EE7E324C2A29271D0061284D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
