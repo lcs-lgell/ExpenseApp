@@ -5,6 +5,7 @@
 //  Created by Leon Gell on 2023-06-01.
 //
 
+import Blackbird
 import SwiftUI
 
 struct TransactionItem: Identifiable {
@@ -15,8 +16,10 @@ struct TransactionItem: Identifiable {
 }
 
 struct ContentView: View {
+    @Environment(\.blackbirdDatabase) var db:
+        Blackbird.Database?
     @State var transactions = [TransactionItem]()
-    @State var selectedType = ""
+    @State var selectedType = "Expenses"
     @State var newDescription = ""
     @State var newAmount = ""
     @State var totalBalance = 0.0
@@ -48,7 +51,7 @@ struct ContentView: View {
             HStack {
                 Picker("Type", selection: $selectedType) {
                     ForEach(transactionTypes, id: \.self) { type in
-                        Text(type)
+                        Text(type).tag(type)
                     }
                 }
                 .pickerStyle(MenuPickerStyle())
@@ -60,26 +63,42 @@ struct ContentView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.decimalPad)
                 
-                Button(action: addTransaction) {
+                Button(action: {
+                    addTransaction()
+                }, label: {
                     Text("+")
-                }
-                .font(.title)
-                .padding()
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(10)
+                        .font(.title)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                })
+
+                
             }
             .padding()
         }
         .onAppear {
             updateTotalBalance()
             }
+        
         }// end of the VStack
+    
     func addTransaction() {
         guard let amount = Double(newAmount), !selectedType.isEmpty else { return }
 
         let transaction = TransactionItem(type: selectedType, description: newDescription, amount: amount)
         transactions.append(transaction)
+
+        Task {
+            do {
+                try await db?.transaction { core in
+                    try core.query("INSERT INTO Entry (name, description, value) VALUES (?,?,?)", selectedType, newDescription, newAmount)
+                }
+            } catch {
+                print("Error inserting transaction: \(error)")
+            }
+        }
 
         newDescription = ""
         newAmount = ""
@@ -87,6 +106,7 @@ struct ContentView: View {
 
         updateTotalBalance()
     }
+
     
     func deleteTransaction(at offsets: IndexSet) {
         transactions.remove(atOffsets: offsets)
