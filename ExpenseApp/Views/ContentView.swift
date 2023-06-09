@@ -19,7 +19,7 @@ struct ContentView: View {
     @Environment(\.blackbirdDatabase) var db:
         Blackbird.Database?
     @State var transactions = [TransactionItem]()
-    @State var selectedType = "Expenses"
+    @State var selectedType = "Expense"
     @State var newDescription = ""
     @State var newAmount = ""
     @State var totalBalance = 0.0
@@ -46,7 +46,7 @@ struct ContentView: View {
                         Text("$\(transaction.amount, specifier: "%.2f")")
                     }
                 }
-// this is where the swipe to delete function will go
+                .onDelete(perform: deleteTransaction) // this is where the swipe to delete function will go
             }
             HStack {
                 Picker("Type", selection: $selectedType) {
@@ -102,7 +102,7 @@ struct ContentView: View {
 
         newDescription = ""
         newAmount = ""
-        selectedType = ""
+        selectedType = "Expense"
 
         updateTotalBalance()
     }
