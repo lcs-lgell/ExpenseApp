@@ -92,8 +92,8 @@ struct ContentView: View {
 
         Task {
             do {
-                try await db?.transaction { core in
-                    try core.query("INSERT INTO Entry (name, description, value) VALUES (?,?,?)", selectedType, newDescription, newAmount)
+                try await db!.transaction { core in
+                    try core.query("INSERT INTO Entry (name, description, value) VALUES (?,?,?)", selectedType, newDescription, amount)
                 }
             } catch {
                 print("Error inserting transaction: \(error)")

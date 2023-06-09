@@ -4,7 +4,7 @@
 //
 //  Created by Leon Gell on 2023-06-01.
 //
-
+import Blackbird
 import SwiftUI
 
 @main
